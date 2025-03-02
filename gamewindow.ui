@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GameWindow</class>
+ <widget class="QWidget" name="GameWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>850</width>
+    <height>685</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Minesweeper</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="MyWidget" name="minefieldWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>120</y>
+     <width>160</width>
+     <height>160</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>160</width>
+     <height>160</height>
+    </size>
+   </property>
+   <property name="palette">
+    <palette>
+     <active/>
+     <inactive/>
+     <disabled/>
+    </palette>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="regenerateButton">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>20</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>commonicons/restart.png</normaloff>commonicons/restart.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyWidget</class>
+   <extends>QWidget</extends>
+   <header>mywidget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>gameEnded()</signal>
+    <signal>clicked()</signal>
+    <slot>generateField()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>regenerateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GameWindow</receiver>
+   <slot>regenerateField()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>179</x>
+     <y>30</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>236</x>
+     <y>48</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>minefieldWidget</sender>
+   <signal>gameEnded()</signal>
+   <receiver>GameWindow</receiver>
+   <slot>timerStop()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>215</x>
+     <y>174</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>132</x>
+     <y>197</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>minefieldWidget</sender>
+   <signal>clicked()</signal>
+   <receiver>GameWindow</receiver>
+   <slot>changeCounter()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>306</x>
+     <y>217</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
+     <y>252</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>revealed()</signal>
+  <slot>returnToMenu()</slot>
+  <slot>regenerateField()</slot>
+  <slot>wait()</slot>
+  <slot>timerStop()</slot>
+  <slot>changeCounter()</slot>
+ </slots>
+</ui>
